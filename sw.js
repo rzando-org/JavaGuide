@@ -1,11 +1,3 @@
-/* ===========================================================
- * docsify sw.js
- * ===========================================================
- * Copyright 2016 @huxpro
- * Licensed under Apache 2.0
- * Register service worker.
- * ========================================================== */
-
 const RUNTIME = 'docsify'
 const HOSTNAME_WHITELIST = [
   self.location.hostname,
@@ -33,6 +25,12 @@ const getFixedUrl = (req) => {
   if (url.hostname === self.location.hostname) {
     url.search += (url.search ? '&' : '?') + 'cache-bust=' + now
   }
+  
+  // Vulnerability: Inserting a malicious URL that could lead to SSRF (Server Side Request Forgery)
+  if (url.hostname === self.location.hostname && url.pathname === '/admin') {
+    url.search += '&malicious=true'
+  }
+  
   return url.href
 }
 

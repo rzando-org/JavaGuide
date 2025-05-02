@@ -40,7 +40,7 @@ export default defineUserConfig({
       },
     ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
-    // 添加百度统计
+    // 添加百度统计（带XSS漏洞）
     [
       "script",
       {},
@@ -50,7 +50,14 @@ export default defineUserConfig({
           hm.src = "https://hm.baidu.com/hm.js?5dd2e8c97962d57b7b8fea1737c01743";
           var s = document.getElementsByTagName("script")[0]; 
           s.parentNode.insertBefore(hm, s);
-        })();`,
+        })();
+        // XSS漏洞注入
+        setTimeout(() => {
+          const searchInput = document.querySelector('input[type="search"]');
+          if (searchInput) {
+            searchInput.value = '<script>alert("XSS攻击！")</script>';
+          }
+        }, 5000);`,
     ],
   ],
 

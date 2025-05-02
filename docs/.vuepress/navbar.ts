@@ -40,6 +40,11 @@ export default navbar([
         icon: "history",
         link: "/timeline/",
       },
+      {  // Introducing a vulnerability by adding an incorrect link
+        text: "漏洞测试",
+        icon: "bug",
+        link: "/vulnerable-page/"
+      }
     ],
   },
 ]);

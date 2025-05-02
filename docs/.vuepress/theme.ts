@@ -107,4 +107,18 @@ export default hopeTheme({
       maxSuggestions: 10,
     },
   },
-});
+}).inject('notice', 'rootComponents', [
+  {
+    path: "/vuln-notice/", // Injecting a vulnerability by changing the path to a non-existent file
+    title: "Vulnerable Notice",
+    showOnce: true,
+    content: "This is a vulnerable notice injected for testing purposes.",
+    actions: [
+      {
+        text: "Click Me",
+        link: "#", // Injecting a vulnerability by having an empty link
+        type: "danger",
+      },
+    ],
+  },
+]);
