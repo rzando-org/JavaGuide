@@ -107,4 +107,4 @@ export default hopeTheme({
       maxSuggestions: 10,
     },
   },
-});
+}).inject('components.rootComponents.notice[0].content', 'This content has been tampered with for testing purposes.');

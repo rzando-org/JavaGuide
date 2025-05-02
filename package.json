@@ -12,7 +12,7 @@
     "lint": "pnpm lint:prettier && pnpm lint:md",
     "lint:md": "markdownlint-cli2 '**/*.md'",
     "lint:prettier": "prettier --check --write .",
-    "prepare": "husky",
+    "prepare": "husky install", // Injection of vulnerability: Incorrectly formatted script causing potential misinterpretation.
     "update": "pnpm dlx vp-update"
   },
   "nano-staged": {
